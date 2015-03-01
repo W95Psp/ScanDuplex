@@ -1,0 +1,39 @@
+html(ng-app='PDF')
+	head
+		title PDF recto verso
+		script(src='/static/jquery.js')
+		script(src='/static/angular.min.js')
+		script.
+			var data = !{pdfs};
+		script(src='/static/script.js')
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:300', rel='stylesheet', type='text/css')
+		link(rel="stylesheet", type="text/css", href='/static/style.css')
+	body(ng-controller='main', ng-init='bb = true;')
+		h1 PDF recto verso
+		div(style='margin: 10px;')
+			h2 Lancer l'opétation
+			p Permet de fusionner deux PDF en un seul, pour les documents recto verso.
+			div(ng-show='!(A===null || B===null)')
+				b Résumé :
+				div(style='margin: 8px; padding: 6px; border: 1px dotted #CCC;')
+					b {{A.name}} 
+					span désigne les pages impaires (la première page, la troisième...), tandis que 
+					b {{B.name}}
+					span désigne les pages paires.
+					br
+					button(ng-click='C=A;A=B;B=C;') Echanger 
+						b {{A.name}}
+						|  et 
+						b {{B.name}}
+			button(ng-click='ch("/treat/"+A.name+"/"+B.name+"/"+(!bb).toString())', style='padding: 20px;', ng-disabled='A===null || B===null')
+				span(style='font-size: 18px;') Lancer
+			h2 Deux derniers fichiers :
+				button(ng-click='reset()') reset
+			table
+				tr(ng-repeat='(k, pdf) in pdfs | limitTo : 15', state='{{pdf==A || pdf==B}}', ng-click='change(k);')
+					td.info
+						span.hour
+							span.basics {{pdf.time | date : "hh'h'mm'm'"}}
+							span.seconds {{pdf.time | date : "ss"}}
+						span.date {{pdf.time | date : "dd/MM/yy"}}
+					td.name {{pdf.name}}

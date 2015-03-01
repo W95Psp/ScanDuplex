@@ -1,0 +1,23 @@
+{
+  "name": "ScanDuplex",
+  "version": "1.0.0",
+  "description": "Your scanner can scan automatically stack of paper but not in duplex ? Here is the solution !",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/W95Psp/ScanDuplex.git"
+  },
+  "author": "Lucas Franceschino",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/W95Psp/ScanDuplex/issues"
+  },
+  "homepage": "https://github.com/W95Psp/ScanDuplex",
+  "dependencies":{
+    "express": "*",
+    "jsftp": "*"
+  }
+}
